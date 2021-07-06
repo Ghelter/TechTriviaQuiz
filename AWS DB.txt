@@ -1,0 +1,6 @@
+AWS Database 
+
+Master Username: admin
+Master Password: h1ghsc0res
+
+TCP/IP Port: 3306
