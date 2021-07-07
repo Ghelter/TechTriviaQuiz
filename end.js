@@ -13,7 +13,7 @@ username.addEventListener('keyup', () => {
     saveScoreBtn.disabled = !username.value
 })
 
-saveHighScore = e => {
+LastScore = e => {
     e.preventDefault()
 
     const score = {
@@ -29,8 +29,9 @@ saveHighScore = e => {
 
     highScores.splice(5)
 
-    localStorage.setItem('highScores', JSON.stringify(highScores))
+    localStorage.setItem('highScores', JSON.stringify(highScores), "<?echo echo $_SESSION['score'];?>");
+    localStorage.setItem('username', "<?echo echo $_SESSION['username'];?>");
     window.location.assign('/')
 
-    
 }
+
