@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+#header nav{
+    background-color: blue;
+    padding: 1em 0;
+    width: 100%;
+}
+
+:root {
+    background-color: rgb(26, 23, 23);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+    font-size: 5.4rem;
+    color: #fff;
+    margin-bottom: 5rem;
+}
+
+
+
+h2 {
+    font-size: 4.2rem;
+    margin-bottom: 4rem;
+
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: right;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.container-aws {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: right;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    font-size: 2.4rem;
+    padding: 1rem 0;
+    width: 30rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: rgb(28, 26, 26);
+    background: linear-gradient(90deg, rgb(4, 255, 100) 0%, rgb(36, 219, 243) 100%);
+    border-radius: 4px;
+}
+
+.btn-aws {
+    font-size: 2.4rem;
+    padding: 1rem 0;
+    width: 30rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: rgb(28, 26, 26);
+    background: linear-gradient(90deg, rgb(235, 204, 102) 0%, rgb(107, 84, 8) 100%);
+    border-radius: 4px;
+
+}
+
+.btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(8, 244, 87, 0.6);
+    transition: transform 150ms;
+    transform: scale(1.03);
+}
+
+.btn-aws:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(255, 178, 12, 0.6);
+    transition: transform 150ms;
+    transform: scale(1.03);
+}
+
+.btn[disabled]:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+#highscore-btn {
+    background: linear-gradient(90deg, rgb(100, 233, 111) 0%,rgb(251, 255, 6) 100%);
+}
+
+#highscore-btn:hover {
+    box-shadow: 0 0.4rem 1.4rem 0 rgb(253, 253, 15)
+}
+
+.fa-crown {
+    font-size: 2.5rem;
+    margin-left: 1rem;
+}
+
+/* End Page CSS */
+.end-form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 30rem;
+}
+
+input {
+    margin-bottom: 1rem;
+    width: 20rem;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    border: none;
+    box-shadow: 0 0.1rem 1.4rem 0 rgba(86, 185, 235, 0.5);
+}
+
+input::placeholder {
+    color: #aaa;
+}
+
+#username {
+    margin-bottom: 3rem;
+    width: 100%;
+    border-radius: 30px;
+    outline: none;
+}
+
+#end-text {
+    font-size: 2.4rem;
+    color: #fff;
+    border-radius: 15px 50px 30px 5px;
+    text-align: center;
+}
+
+#saveScoreBtn {
+    border: none;
+}
+
+.fa-home {
+    margin-left: 1rem;
+    font-size: 2rem;
+    color: rgb(28, 26, 26)
+}
+
+.ITtable {
+    font-size: 10em;
+    box-sizing: border-box;
+    border-spacing: 0px;
+    margin: 2em 0;
+    display: inline-block;
+    flex: 50%;
+    padding: 50px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    width: 50%;
+    padding: .75em;
+    text-align: center;
+
+}
+
+.ITtable td {
+    padding: .75em;
+    vertical-align: top;
+    text-align: center;
+    border-top: 1px solid;
+    border-color: black;
+}
+
+.ITtable .thead-dark th {
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+
+.AWStable {
+    font-size: 10em;
+    box-sizing: border-box;
+    border-spacing: 0px;
+    margin: 2em 0;
+    display: inline-block;
+    flex: 50%;
+    padding: 50px;
+    font-family: 'Oswald', sans-serif;
+    color: white;
+}
+
+.AWStable .thead-dark th {
+    color: white;
+    background-color: black;
+    border-color: black;
+}
+
+.AWStable td {
+    padding: .75em;
+    vertical-align: top;
+    text-align: center;
+    border-top: 1px solid;
+    border-color: black;
+}
+
+.AWStable tr {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    
+}
+
+
+/* Game CSS */
+
+body {
+    color: #fff;
+}
+
+.choice-container {
+    display: flex;
+    margin-bottom: 0.8rem;
+    width: 100%;
+    border-radius: 4px;
+    background: rgb(17, 177, 31);
+    font-size: 3rem;
+    min-width: 80rem;
+}
+
+.choice-container:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(27, 61, 134, 0.5);
+    transform: scale(1.02);
+    transform: transform 100ms;
+}
+
+.choice-container-aws {
+    display: flex;
+    margin-bottom: 0.8rem;
+    width: 100%;
+    border-radius: 4px;
+    background: rgb(201, 158, 18);
+    font-size: 3rem;
+    min-width: 80rem;
+}
+
+.choice-container-aws:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(255, 199, 46, 0.5);
+    transform: scale(1.02);
+    transform: transform 100ms;
+}
+
+.choice-prefix {
+    padding: 4rem 7rem;
+    color: white;
+}
+
+.choice-text {
+    padding: 5rem;
+    width: 100%;
+}
+
+.choice-text-aws {
+    padding: 5rem;
+    width: 100%;
+    color: black;
+}
+
+.choice-prefix-aws {
+    padding: 4rem 7rem;
+    color: rgb(0, 0, 0);
+}
+
+.correct {
+    background: linear-gradient(32deg, rgb(51, 134, 61) 0%, rgb(51, 134, 61) 100%);
+}
+
+.incorrect {
+    background: linear-gradient(32deg, rgb(121, 24, 24) 0%, rgb(121, 24, 24, 1) 100%);
+}
+
+/* Heads up Display */
+#hud {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hud-item {
+    text-align: right;
+    margin-left: 10rem;
+}
+
+.hud-prefix-text{
+    text-align: right;
+
+}
+
+.hud-prefix {
+    text-align: center;
+    font-size: 4rem;
+}
+
+.hud-main-text {
+    text-align: right;
+}
+
+
+#progressBar {
+    width: 100rem;
+    height: 5rem;
+    border: 0.2rem solid rgb(51, 134, 61);
+    margin-top: 2rem;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+
+#progressBar-aws {
+    width: 100rem;
+    height: 5rem;
+    border: 0.2rem solid rgb(255, 184, 29);
+    margin-top: 2rem;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+#progressBarFull {
+    height: 100%;
+    background: rgb(51, 134, 61);
+    width: 0%;
+}
+
+@media screen and (max-width: 768px) {
+    .choice-container {
+        min-width: 40rem;
+    }
+}
+
+/* Highscores CSS */
+
+body {
+    color: #fff;
+}
+
+#highScoresList {
+    list-style: none;
+    margin-bottom: 4rem;
+}
+
+.high-score {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Highscores CSS */

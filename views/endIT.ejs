@@ -1,0 +1,61 @@
+<!--header-->
+<%- include('include/_header')%>
+<!--header-->
+
+<body>
+    <div class="container">
+        <div id="end" class="flex-center flex-column">
+            <h1 name="highscore" id="finalScore">0</h1>
+            <form class="end-form-container" action="/" method="POST">
+                <h2 id="end-text">Enter your name to compare your score to the highscores</h2>
+                <input type="text" name="name" id="username" placeholder="Enter your name">
+                <button class="btn" id="saveScoreBtn" type="submit" onclick="saveHighScore(event)" disabled>Save</button>
+            </form>
+            <a href="/game.html" class="btn">Play Again</a>
+            <a href="/" class="btn">Go Home<i class="fas fa-home"></i></a>
+        </div>
+    </div>
+
+    
+<script>
+
+const username = document.querySelector('#username')
+const saveScoreBtn = document.querySelector('#saveScoreBtn')
+const finalScore = document.querySelector('#finalScore')
+const mostRecentScore = localStorage.getItem('mostRecentScore')
+
+const highScores = JSON.parse(localStorage.getItem('highScores')) || []
+
+const MAX_HIGH_SCORES = 5
+
+finalScore.innerText = mostRecentScore
+
+username.addEventListener('keyup', () => {
+    saveScoreBtn.disabled = !username.value
+})
+
+saveHighScore = e => {
+    e.preventDefault()
+
+    const score = {
+        score: mostRecentScore,
+        name: username.value
+    }
+
+    highScores.push(score)
+
+    highScores.sort((a,b) => {
+        return b.score - a.score
+    })
+
+    highScores.splice(5)
+
+    localStorage.setItem('highScores', JSON.stringify(highScores))
+    window.location.assign('/')
+}
+
+</script>
+
+<!--closingBody-->
+<%- include('include/_closingBody')%>
+<!--closingBody-->

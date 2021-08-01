@@ -1,0 +1,214 @@
+<!--header-->
+<%- include('include/_header')%>
+<!--header-->
+
+
+<body>
+    <div class="container">
+        <div id="game" class="justify-center flex-column">
+            <div id="hud">
+                <div class="hud-item">
+                    <p id="progressText" class="hud-prefix">
+                        Question
+                    </p>
+                    <div id="progressBar">
+                        <div id="progressBarFull"></div>
+                    </div>
+                </div>
+                <div class="hud-item">
+                    <p class="hud-prefix">
+                        Score
+                    </p>
+                    <h1 class="hud-main-text" id="score">
+                        0
+                    </h1>
+                </div>
+            </div>
+            <h1 id="question">answer to this question</h1>
+            <div class="choice-container">
+                <p class="choice-prefix">A</p>
+                <p class="choice-text" data-number="1">Choice</p>
+            </div>
+            <div class="choice-container">
+                <p class="choice-prefix">B</p>
+                <p class="choice-text" data-number="2">Choice 2</p>
+            </div>
+            <div class="choice-container">
+                <p class="choice-prefix">C</p>
+                <p class="choice-text" data-number="3">Choice 3</p>
+            </div>
+            <div class="choice-container">
+                <p class="choice-prefix">D</p>
+                <p class="choice-text" data-number="4">Choice 4</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+
+const question = document.querySelector('#question');
+const choices = Array.from(document.querySelectorAll('.choice-text'));
+const progressText = document.querySelector('#progressText');
+const scoreText = document.querySelector('#score');
+const progressBarFull = document.querySelector('#progressBarFull');
+
+let currentQuestion = {}
+let acceptingAnswers = true
+let score = 0
+let questionCounter = 0
+let availableQuestions = []
+
+let questions = [
+    {
+        question: 'The word "computer" usually refers to the Central Processing Unit and what else?',
+        choice1: 'Input Devices',
+        choice2: 'Internal Memory',
+        choice3: 'External Memory',
+        choice4: 'Output Device',
+        answer: 2,
+    },
+    {
+        question: "All of the following are examples of storage devices except",
+        choice1: "Printers",
+        choice2: "Hard Disk Drives",
+        choice3: "Floppy Disks",
+        choice4: "CD Drivers",
+        answer: 1,
+    },
+    {
+        question: "What device is used to transmit data over telecommunications lines?",
+        choice1: "Drives",
+        choice2: "Drive bays",
+        choice3: "Modems",
+        choice4: "Platforms",
+        answer: 3,
+    },
+    {
+        question: "Using output devices one can?",
+        choice1: "view or print",
+        choice2: "store data",
+        choice3: "scan data",
+        choice4: "input data",
+        answer: 1,
+    },
+    {
+        question: "Every Web page has a unique address called a(n)",
+        choice1: "RUL",
+        choice2: "ARL",
+        choice3: "LUR",
+        choice4: "URL",
+        answer: 4,
+    },
+    {
+        question: "This address changes temporarily as the applications connect to the Internet?",
+        choice1: "Multi IP Address",
+        choice2: "static IP Address",
+        choice3: "Dynamic IP Address",
+        choice4: "unique IP Address",
+        answer: 3,
+    },
+    {
+        question: "What is the domain used for non-profitable organizations?",
+        choice1: ".org",
+        choice2: ".gov",
+        choice3: ".net",
+        choice4: ".com",
+        answer: 1,
+    },
+    {
+        question: ".net domain is used for",
+        choice1: "Educational Institutions",
+        choice2: "Internet infrastructure and service providers",
+        choice3: "International Organizations",
+        choice4: "Industries",
+        answer: 2,
+    },
+    {
+        question: "World Wide Web was proposed by _______",
+        choice1: "Bill Gates",
+        choice2: "Tim Cook",
+        choice3: "Tim Berners-Lee",
+        choice4: "None of these",
+        answer: 3,
+    },
+    {
+        question: "Another name of internet is _______?",
+        choice1: "Virtual Space",
+        choice2: "Cyberspace",
+        choice3: "Information Space",
+        choice4: "Data Space",
+        answer: 2,
+    }
+]
+
+const SCORE_POINTS = 100
+const MAX_QUESTIONS = 10
+
+startGame = () => {
+    questionCounter = 0
+    score = 0
+    availableQuestions = [...questions]
+    getNewQuestion()
+}
+
+getNewQuestion = () => {
+    if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
+        localStorage.setItem('mostRecentScore', score)
+
+        return window.location.href = ("/endIT")
+    }
+
+    questionCounter++
+    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`
+    progressBarFull.style.width = `${(questionCounter/MAX_QUESTIONS) * 100}%`
+    
+    const questionsIndex = Math.floor(Math.random() * availableQuestions.length)
+    currentQuestion = availableQuestions[questionsIndex]
+    question.innerText = currentQuestion.question
+
+    choices.forEach(choice => {
+        const number = choice.dataset['number']
+        choice.innerText = currentQuestion['choice' + number]
+    })
+
+    availableQuestions.splice(questionsIndex, 1)
+
+    acceptingAnswers = true
+}
+
+choices.forEach(choice => {
+    choice.addEventListener('click', e => {
+        if(!acceptingAnswers) return
+
+        acceptingAnswers = false
+        const selectedChoice = e.target
+        const selectedAnswer = selectedChoice.dataset['number']
+
+        let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
+
+        if(classToApply === 'correct') {
+            incrementScore(SCORE_POINTS)
+        }
+
+        selectedChoice.parentElement.classList.add(classToApply)
+
+        setTimeout(() => {
+            selectedChoice.parentElement.classList.remove(classToApply)
+            getNewQuestion()
+
+        }, 1000)
+    })
+})
+
+incrementScore = num => {
+    score +=num
+    scoreText.innerText = score
+}
+
+startGame()
+</script>
+
+
+<!--closingBody-->
+<%- include('include/_closingBody')%>
+<!--closingBody-->      

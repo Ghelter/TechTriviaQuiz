@@ -1,0 +1,51 @@
+<!--header-->
+<%- include('include/_header')%>
+<!--header-->
+
+<body>
+    
+<!--Highscores Table-->
+<body>
+    <div class="containerhighscores">
+        <div id="highScores" class="flex-center flex-column">
+            <h1 id="finalScore">IT Highscores</h1>
+            <ul id="highScoresList"></ul>
+        </div>
+    </div>
+
+    <div class="containerAWS">
+        <div id="highScoresAWS" class="flex-center flex-column">
+            <h1 id="finalScoreAWS">AWS Highscores</h1>
+            <ul id="highScoresListAWS"></ul>
+            <br>
+            <br>
+            <a href="/" class="btn">Game Home Page<i class="fas fa-home"></i></a>
+        </div>
+    </div>
+
+<script>
+
+const highScoresList = document.querySelector('#highScoresList')
+const highScores = JSON.parse(localStorage.getItem("highScores")) || []
+
+highScoresList.innerHTML = highScores.map(score => {
+    return `<li class="high-score">${score.name} - ${score.score}</li>`
+}).join("")
+
+
+const highScoresListAWS = document.querySelector('#highScoresListAWS')
+const highScoresAWS = JSON.parse(localStorage.getItem("highScoresAWS")) || []
+
+highScoresListAWS.innerHTML = highScoresAWS.map(scoreAWS => {
+    return `<li class="high-score">${scoreAWS.name} - ${scoreAWS.score}</li>`
+}).join("")
+
+
+</script>
+
+<!--closingBody-->
+<%- include('include/_closingBody')%>
+<!--closingBody-->    
+
+
+
